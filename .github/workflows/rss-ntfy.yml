@@ -2,7 +2,7 @@ name: BleepingComputer Malware Watcher
 
 on:
   schedule:
-    - cron: '*/1 * * * *'  # Every 5 minutes
+    - cron: '*/5 * * * *'  # Every 5 minutes
   workflow_dispatch:  # Allow manual run
 
 jobs:
