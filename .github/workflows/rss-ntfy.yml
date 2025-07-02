@@ -2,7 +2,7 @@ name: BleepingComputer Malware Watcher
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # Every 5 minutes
+    - cron: '*/1 * * * *'  # Every 5 minutes
   workflow_dispatch:  # Allow manual run
 
 jobs:
@@ -13,7 +13,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Download seen-links artifact (if exists)
+        uses: actions/download-artifact@v4
+        with:
+          name: seen-links
+        continue-on-error: true
+
+      - name: Move artifact seen-links.txt (if downloaded)
+        run: |
+          if [ -f seen-links/seen-links.txt ]; then
+            mv seen-links/seen-links.txt seen-links.txt
+          fi
+
       - name: Run PowerShell RSS watcher
         shell: pwsh
-        run: |
-          pwsh BleepNtfy.ps1
+        run: pwsh BleepNtfy.ps1
+
+      - name: Upload seen-links artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: seen-links
+          path: seen-links.txt
