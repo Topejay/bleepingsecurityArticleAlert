@@ -1,0 +1,19 @@
+name: BleepingComputer Malware Watcher
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # Every 5 minutes
+  workflow_dispatch:  # Allow manual run
+
+jobs:
+  run-watcher:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run PowerShell RSS watcher
+        shell: pwsh
+        run: |
+          pwsh BleepNtfy.ps1
