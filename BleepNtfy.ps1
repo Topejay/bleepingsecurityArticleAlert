@@ -1,9 +1,9 @@
 # === CONFIGURATION ===
 $feedUrl = "https://www.bleepingcomputer.com/feed/"
-$ntfyTopic = "TGtGaTeIfVldAkn0"  # Change to your topic
+$ntfyTopic = "Bleepingnot"  # Change to your topic
 $ntfyUrl = "https://ntfy.sh/$ntfyTopic"
 $seenFile = "seen-links.txt"
-$keywords = @("malware", "ransomware", "virus", "trojan", "spyware")
+$keywords = @("malware", "ransomware", "virus", "trojan", "spyware", "zero-day", "vulnerabilities", "security patches")
 
 # === LOAD SEEN LINKS ===
 $seenLinks = @{}
